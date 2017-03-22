@@ -26,7 +26,7 @@ npm test
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-## 项目需要运行起来，需要在src/db下面添加四个.js文件
+## 项目需要运行起来，需要在src下创建db文件夹添加下面添加四个.js文件
 
 ```js
 bible.js
