@@ -9,3 +9,4 @@ selenium-debug.log
 /src/db/bible.js
 /src/db/contents.js
 /src/db/info.js
+.vscode

@@ -1,5 +1,5 @@
 <template>
-<div style="width: 100%;position: fixed;z-index: 100;bottom: 65px;">
+<div style="width: 100%;">
   <div class="jump" @click="next(list[0])" v-bind:class="{ 'hide': !list[0] }">
     <icon slot="icon" name="arrow-circle-left" scale="2" style="color: limegreen;"></icon>
   </div>

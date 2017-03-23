@@ -1,7 +1,8 @@
 <template>
 <div>
   <div v-transfer-dom>
-    <confirm v-model="show" :title="title" :confirm-text='confirmText' :cancel-text='cancelText' @on-cancel="onCancel" @on-confirm="onConfirm">
+    <confirm v-model="show" :title="title" :confirm-text='confirmText' :cancel-text='cancelText' @on-cancel="onCancel" @on-confirm="onConfirm"  @on-show="onShow"
+      @on-hide="onHide">
       <p style="text-align:left;color: black;" v-html='infoContent'></p>
     </confirm>
   </div>
@@ -138,6 +139,12 @@ export default {
         isRemind: true,
         readDate: today
       });
+    },
+    onHide () {
+      console.log('on hide')
+    },
+    onShow () {
+      console.log('on show')
     }
   },
   watch: {
