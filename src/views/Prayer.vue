@@ -9,7 +9,7 @@
   <tab :line-width="2" v-show='$route.params.type === "urgent"' style="position: fixed; z-index: 1; width: 100%;max-width: 600px;">
     <tab-item :selected="current === item" v-for="(item, index) in list" :class="{'vux-1px-r': index===0}" @on-item-click="current = item" :key="index">{{item}}</tab-item>
   </tab>
-  <div v-show='current === "紧急pray" && $route.params.type === "urgent"' class="cus-bottom">
+  <div v-show='current === list[0] && $route.params.type === "urgent"' class="cus-bottom">
     <contents :contents="values"></contents>
     <navigation :classification='_classification' :type='$route.params.type' v-on:next="thisNext"></navigation>
   </div>
@@ -17,7 +17,7 @@
     <contents :contents="values"></contents>
     <navigation :classification='_classification' :type='$route.params.type' v-on:next="thisNext"></navigation>
   </div>
-  <div v-show='current === "今天pray"' class="cus-bottom">
+  <div v-show='current === list[1]' class="cus-bottom">
     <contents :contents="todayValues"></contents>
     <navigation :classification='_classification' :type='$route.params.type' v-on:next="thisNext"></navigation>
   </div>
@@ -61,7 +61,7 @@ export default {
       type: this.$route.params.type,
       values: [],
       todayValues: [],
-      list: ['紧急pray', '今天pray'],
+      list: ['紧急pray', '最新'],
       current: '紧急pray',
       orderby: {
         updateDate: 'desc'
@@ -86,9 +86,9 @@ export default {
       }
       isEnd = element.isEnd || isEnd; //标注结束，或者时间已经结束都是结束
       array[index]["isEnd"] = isEnd;
-      let isToday = dateFormat(now, "yyyy-mm-dd") === element.updateDate;
+      //let isToday = dateFormat(now, "yyyy-mm-dd") === element.updateDate;
       if (type === 'today') {
-        return (!isEnd && isToday);
+        return (!isEnd);
       } else if (type === 'urgent') {
         return (!isEnd && element.isUrgent);
       } else if (type === 'end') {
@@ -113,6 +113,7 @@ export default {
         }).sort(function(a, b) {
           return that.$utils.SortByProps(a, b, that.orderby);
         });
+        this.todayValues.length = parseInt(this.$utils.storage.getNewTop());
       }
       if (this.type === 'all') {
         this.orderby = {
@@ -158,6 +159,7 @@ export default {
     })
   },
   created: function() {
+    this.list[1] = "最新" + this.$utils.storage.getNewTop() + "条"
     this._classification = "fellowship";
     let _code = this.$utils.storage.getCode();
     let read = this.$utils.storage.getPrayInfoIsRead();

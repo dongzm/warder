@@ -59,6 +59,12 @@ var storage = {
   getCode: function() {
       return this.storage.getItem("CODE") || 0;
   },
+  saveNewTop: function(value) {
+      this.storage.setItem("NEWTOP", value);
+  },
+  getNewTop: function() {
+      return this.storage.getItem("NEWTOP") || '10';
+  },
   savePrayInfoIsRead: function(value) {
       this.storage.setItem("PRAYINFOISREAD", JSON.stringify(value));
   },

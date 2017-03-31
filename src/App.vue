@@ -9,11 +9,11 @@
   <tabbar slot="bottom" style="max-width: 600px; margin: 0 auto;">
     <tabbar-item :link="{path:'/Prayer/urgent'}" v-bind:class="{ weui_bar_item_on: this.$route.path === '/Prayer/urgent' }">
       <icon slot="icon" name="ambulance" scale="1.5" style="color: darksalmon;"></icon>
-      <span slot="label">紧急/今日</span>
+      <span slot="label">紧急/Top{{newTop}}</span>
     </tabbar-item>
     <tabbar-item :link="{path:'/Read'}" v-bind:class="{ weui_bar_item_on: this.$route.path === '/Read' }">
       <icon slot="icon" name="clock-o" scale="1.5" style="color: darksalmon;"></icon>
-      <span slot="label">阅读</span>
+      <span slot="label">阅读中心</span>
     </tabbar-item>
     <tabbar-item :link="{path:'/List/fellowship'}" v-bind:class="{ weui_bar_item_on: this.$route.path === '/List/fellowship' }">
       <icon slot="icon" name="list" scale="1.5" style="color: darksalmon;"></icon>
@@ -21,7 +21,7 @@
     </tabbar-item>
     <tabbar-item :link="{path:'/Info'}" v-bind:class="{ weui_bar_item_on: this.$route.path === '/Info' || this.$route.path === '/'}">
       <icon slot="icon" name="github" scale="1.5" style="color: darksalmon;"></icon>
-      <span slot="label">消息中心</span>
+      <span slot="label">设置</span>
     </tabbar-item>
   </tabbar>
 </div>
@@ -48,7 +48,8 @@ export default {
   },
   data() {
     return {
-      code: code
+      code: code,
+      newTop: this.$utils.storage.getNewTop()
     }
   },
   methods: {

@@ -13,6 +13,8 @@ import Prayer from './views/Prayer.vue'
 import Contact from './views/Contact.vue'
 import Bible from './views/Bible.vue'
 import Read from './views/Read.vue'
+import Setting from './views/Setting.vue'
+import HistoryInfo from './views/HistoryInfo.vue'
 
 Vue.prototype.$utils = utils;
 Object.keys(filters).forEach(function(k) {
@@ -52,11 +54,23 @@ const routes = [{
   path: '/Bible/:type',
   component: Bible
 }, {
+  path: '/Setting',
+  component: Setting,
+  meta: {
+    title: "系统设置"
+  }
+}, {
+  path: '/HistoryInfo',
+  component: HistoryInfo,
+  meta: {
+    title: "历史公告"
+  }
+}, {
   path: '/*',
   component: Info,
   meta: {
     title: "信息通知"
-  },
+  }
 }]
 
 
